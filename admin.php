@@ -5,7 +5,7 @@ if (!isset($_SESSION['user'])) { header('Location: adminLogin.php'); exit(); }
 $stmt = $conn->query("SELECT COUNT(*) AS cnt FROM customer"); $total_customers = $stmt->fetch()['cnt'];
 $stmt = $conn->query("SELECT COALESCE(SUM(amount),0) AS total FROM customer"); $total_bills_amount = $stmt->fetch()['total'];
 $stmt = $conn->query("SELECT COUNT(*) AS cnt FROM complaint"); $total_complaints = $stmt->fetch()['cnt'];
-$stmt = $conn->query("SELECT COUNT(*) AS cnt FROM complaint WHERE status='On Process' OR status IS NULL OR status=''"); $pending_complaints = $stmt->fetch()['cnt'];
+$stmt = $conn->query("SELECT COUNT(*) AS cnt FROM complaint WHERE status IS NULL OR status='' OR status='Pending'"); $pending_complaints = $stmt->fetch()['cnt'];
 $stmt = $conn->query("SELECT COUNT(*) AS cnt FROM application"); $total_applications = $stmt->fetch()['cnt'];
 $recent_complaints = $conn->query("SELECT * FROM complaint ORDER BY id DESC LIMIT 5");
 $recent_customers = $conn->query("SELECT * FROM customer ORDER BY cust_id DESC LIMIT 5");

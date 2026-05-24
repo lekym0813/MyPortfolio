@@ -82,6 +82,7 @@ if (!isset($_SESSION['user'])) {
               <label>Status</label>
               <select name="status" class="form-control">
                 <option value="">All</option>
+                <option value="Pending">Pending</option>
                 <option value="On Process">On Process</option>
                 <option value="Accomplished">Accomplished</option>
                 <option value="Schedule for Maintenance">Schedule for Maintenance</option>
@@ -130,7 +131,7 @@ if (!isset($_SESSION['user'])) {
                   if (!empty($complaint)) $conditions[] = "complaint ='$complaint'";
                   if (!empty($status)) $conditions[] = "status ='$status'";
                   if (!empty($start_date) && !empty($last_date)) $conditions[] = "date BETWEEN '$start_date' AND '$last_date'";
-                  $where = count($conditions) > 0 ? implode(" OR ", $conditions) : "1=1";
+                  $where = count($conditions) > 0 ? implode(" AND ", $conditions) : "1=1";
                   $query = "SELECT * FROM complaint WHERE $where";
                   $result = $conn->query($query);
                 }

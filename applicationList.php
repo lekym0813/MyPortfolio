@@ -130,7 +130,7 @@ if (!isset($_SESSION['user'])) {
                   if (!empty($app_type)) $conditions[] = "conntype='$app_type'";
                   if (!empty($status)) $conditions[] = "status='$status'";
                   if (!empty($start_date) && !empty($last_date)) $conditions[] = "date BETWEEN '$start_date' AND '$last_date'";
-                  $where = count($conditions) > 0 ? implode(" OR ", $conditions) : "1=1";
+                  $where = count($conditions) > 0 ? implode(" AND ", $conditions) : "1=1";
                   $query = "SELECT * FROM application WHERE $where";
                   $result = $conn->query($query);
                 }
