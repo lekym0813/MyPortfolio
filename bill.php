@@ -69,7 +69,7 @@ if (!isset($_SESSION['email'])) {
           <div class="info-row"><span class="label">Account No.</span><span class="value"><?php echo htmlspecialchars($rows['cust_account']); ?></span></div>
           <div class="info-row"><span class="label">Address</span><span class="value"><?php echo htmlspecialchars($rows['cust_address']); ?></span></div>
           <div class="info-row"><span class="label">Billing Month</span><span class="value"><?php echo htmlspecialchars($rows['billing_month']); ?></span></div>
-          <div class="info-row"><span class="label">Meter Reading</span><span class="value"><?php echo number_format($rows['PrReading'],2); ?> - <?php echo number_format($rows['CReading'],2); ?> = <?php echo number_format($rows['TReading'],2); ?> m&sup3;</span></div>
+          <div class="info-row"><span class="label">Meter Reading</span><span class="value"><?php echo number_format($rows['prreading'] ?? 0,2); ?> - <?php echo number_format($rows['creading'] ?? 0,2); ?> = <?php echo number_format($rows['treading'] ?? 0,2); ?> m³;</span></div>
           <div class="info-row"><span class="label">Due Date</span><span class="value"><?php echo htmlspecialchars($rows['due_date']); ?></span></div>
           <div class="info-row"><span class="label">Status</span><span class="value"><?php echo $rows['status'] ?? 'Unpaid'; ?></span></div>
           <div class="total-row"><span>Total Amount Due</span><span>&#8369;<?php echo number_format($rows['amount'], 2); ?></span></div>
