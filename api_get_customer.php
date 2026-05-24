@@ -15,7 +15,7 @@ if ($row = $stmt->fetch()) {
   echo json_encode([
     'cust_name' => $row['cust_name'],
     'cust_address' => $row['cust_address'],
-    'PrReading' => $row['CReading'],
+    'prreading' => $row['prreading'],
     'found' => true
   ]);
 } else {
