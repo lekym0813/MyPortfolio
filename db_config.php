@@ -1,9 +1,13 @@
 <?php
-$host = getenv("DB_HOST") ?: "aws-1-ap-southeast-1.pooler.supabase.com";
-$port = getenv("DB_PORT") ?: "5432";
-$dbname = getenv("DB_NAME") ?: "postgres";
-$username = getenv("DB_USER") ?: "postgres.jbktcpvtelogutmbeycv";
-$password = getenv("DB_PASSWORD") ?: "Supergwapo@23";
+$host = getenv("DB_HOST");
+$port = getenv("DB_PORT");
+$dbname = getenv("DB_NAME");
+$username = getenv("DB_USER");
+$password = getenv("DB_PASSWORD");
+
+if (!$host && file_exists(__DIR__ . '/db_local.php')) {
+    require_once __DIR__ . '/db_local.php';
+}
 
 try {
     $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $username, $password);
