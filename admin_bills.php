@@ -43,7 +43,7 @@ if (isset($_POST['update_bill'])) {
   $amt = $tr * 24.00;
   $due = $_POST['due_date'];
   $month = date('F', strtotime($_POST['billing_month'] . '-01'));
-  $upd = "UPDATE customer SET PrReading='$pr', CReading='$cr', TReading='$tr', amount='$amt', due_date='$due', billing_month='$month' WHERE cust_id='$cid'";
+  $upd = "UPDATE customer SET prreading='$pr', creading='$cr', treading='$tr', amount='$amt', due_date='$due', billing_month='$month' WHERE cust_id='$cid'";
   try { $conn->exec($upd); $success_msg = "Bill updated!"; } catch (Exception $e) { $error_msg = "Update failed: " . $e->getMessage(); }
 }
 
