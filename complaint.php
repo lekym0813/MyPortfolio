@@ -74,20 +74,20 @@ $user_data = $stmt->fetch();
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label>Account Name</label>
-                    <input type="text" class="form-control" name="accountname" value="<?php echo htmlspecialchars($user_data['name']); ?>" placeholder="Full Name" required>
+                    <input type="text" class="form-control" name="accountname" value="<?php echo htmlspecialchars($user_data['name'] ?? ''); ?>" placeholder="Full Name" required>
                   </div>
                   <div class="form-group col-md-6">
                     <label>Account Number</label>
-                    <input type="text" class="form-control" name="accountnum" value="<?php echo htmlspecialchars($user_data['accountnum']); ?>" placeholder="Account Number" required>
+                    <input type="text" class="form-control" name="accountnum" value="<?php echo htmlspecialchars($user_data['accountnum'] ?? ''); ?>" placeholder="Account Number" required>
                   </div>
                 </div>
                 <div class="form-group">
                     <label>Address</label>
-                  <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($user_data['address']); ?>" placeholder="Complete Address" required>
+                  <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($user_data['address'] ?? ''); ?>" placeholder="Complete Address" required>
                 </div>
                 <div class="form-group">
                     <label>Contact No.</label>
-                  <input type="number" class="form-control" name="contact" value="<?php echo htmlspecialchars($user_data['users_Pnumber']); ?>" placeholder="Contact Number" required>
+                  <input type="number" class="form-control" name="contact" value="<?php echo htmlspecialchars($user_data['users_Pnumber'] ?? ''); ?>" placeholder="Contact Number" required>
                 </div>
                 <div class="form-group">
                   <label>Type of Complaint</label>
