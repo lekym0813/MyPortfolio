@@ -84,7 +84,7 @@ if (isset($_POST['import_excel']) && isset($_FILES['excel_file']) && $_FILES['ex
       $due = $r[6] ?? date('Y-m-d');
       $month = $r[7] ?? date('F');
       if (empty($name) || empty($acct)) { $errors[] = "Row " . ($i + 1) . ": name and account are required"; continue; }
-      $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES (...)
+     $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES ('$name','$acct','$addr','$pr','$cr','$tr','$amt','$due','$month')";
       try { $conn->exec($ins); $imported++; } catch (Exception $e) { $errors[] = "Row " . ($i + 1) . ": " . $e->getMessage(); }
     }
     $success_msg = "$imported customer(s) imported successfully.";
