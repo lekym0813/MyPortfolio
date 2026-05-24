@@ -58,7 +58,7 @@ if (isset($_POST['add_customer'])) {
   $due = $_POST['due_date'];
   $raw_month = $_POST['billing_month'];
   $month = date('F', strtotime($raw_month . '-01'));
-  $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES (...)
+  $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES (...)";
   try { $conn->exec($ins); $success_msg = "Customer '$name' added!"; } catch (Exception $e) { $error_msg = "Add failed: " . $e->getMessage(); }
 }
 
