@@ -138,9 +138,11 @@ if (!isset($_SESSION['user'])) {
                   while ($rows = $result->fetch()) {
                 ?>
                 <tr>
-                  <td><?php echo htmlspecialchars($rows['fname']); ?></td>
-                  <td><?php echo htmlspecialchars($rows['lname']); ?></td>
-                  <td><?php echo htmlspecialchars($rows['date']); ?></td>
+                  <td><?php echo htmlspecialchars($rows['fname'] ?? ''); ?></td>
+                  <td><?php echo htmlspecialchars($rows['lname'] ?? ''); ?></td>
+                  <td><?php echo htmlspecialchars($rows['date'] ?? ''); ?></td>
+                  <td><?php echo htmlspecialchars($rows['conntype'] ?? ''); ?></td>
+                  <td><?php echo htmlspecialchars($s ?? ''); ?></td>
                   <td>
                     <?php
                     $s = $rows['status'] ?: 'Pending';
