@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php require_once('admindata.php'); ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
