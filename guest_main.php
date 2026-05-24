@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once 'guest_session.php';
 if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'guest') {
@@ -6,6 +5,7 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'guest') {
   exit();
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

@@ -1,24 +1,16 @@
-<!DOCTYPE HTML>
 <?php 
 include('db.php');
-
-
-
 session_start();
-if (isset($_SESSION['email'])){
-
-}
-else{
+if (!isset($_SESSION['email'])){
 	header('Location: usermain.php');
 }
-
 ?>
+<!DOCTYPE HTML>
 <!--
 	Linear by TEMPLATED
     templated.co @templatedco
     Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-
 <html>
 	<head>
 		<title>PrimeWater Quezon Metro</title>

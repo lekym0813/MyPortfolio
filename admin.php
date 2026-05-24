@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include('db.php');
 session_start();
@@ -11,6 +10,7 @@ $stmt = $conn->query("SELECT COUNT(*) AS cnt FROM application"); $total_applicat
 $recent_complaints = $conn->query("SELECT * FROM complaint ORDER BY id DESC LIMIT 5");
 $recent_customers = $conn->query("SELECT * FROM customer ORDER BY cust_id DESC LIMIT 5");
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

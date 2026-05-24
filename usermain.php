@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once('logindata.php');
 if (!isset($_SESSION['email'])) {
@@ -6,6 +5,7 @@ if (!isset($_SESSION['email'])) {
   exit();
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

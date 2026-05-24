@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include_once('appdata.php');
 if (!isset($_SESSION['email'])) {
@@ -14,6 +13,7 @@ if (isset($_POST['apply'])){
   move_uploaded_file($file_tem_loc, $file_store);
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

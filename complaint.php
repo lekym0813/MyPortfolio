@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 require_once('complaintdata.php');
 if (!isset($_SESSION['email'])) {
@@ -10,6 +9,7 @@ $stmt = $conn->prepare("SELECT name, accountnum, address, users_Pnumber FROM use
 $stmt->execute([$user_id]);
 $user_data = $stmt->fetch();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

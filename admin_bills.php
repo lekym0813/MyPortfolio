@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 include('db.php');
 session_start();
@@ -96,6 +95,7 @@ if (isset($_POST['import_excel']) && isset($_FILES['excel_file']) && $_FILES['ex
 $customers = $conn->query("SELECT * FROM customer ORDER BY cust_id ASC");
 $active_tab = $_GET['tab'] ?? 'list';
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">

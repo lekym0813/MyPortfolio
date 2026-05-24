@@ -1,15 +1,11 @@
-<!DOCTYPE HTML>
 <?php
 include('db.php');
-
 session_start();
-if (isset($_SESSION['user'])){
-
-}
-else{
+if (!isset($_SESSION['user'])){
 	header('Location: adminLogin.php');
 }
 ?>
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Primewater Quezon Metro</title>

@@ -62,7 +62,7 @@ $statement->execute();
 $result = $statement->fetchAll();
 
 ?>
-
+<!DOCTYPE html>
 <html>
  <head>
   <title>Daterange Mysql Data Export to CSV in PHP</title>
