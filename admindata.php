@@ -6,7 +6,7 @@ if (isset($_POST['loginAdmin'])){
     $user = $_POST['user'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM admin WHERE user = ?");
+    $stmt = $conn->prepare('SELECT * FROM admin WHERE "user" = ?');
     $stmt->execute([$user]);
     $admin = $stmt->fetch();
 
