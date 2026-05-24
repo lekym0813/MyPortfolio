@@ -58,7 +58,7 @@ if (isset($_POST['add_customer'])) {
   $due = $_POST['due_date'];
   $raw_month = $_POST['billing_month'];
   $month = date('F', strtotime($raw_month . '-01'));
-  $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, PrReading, CReading, TReading, amount, due_date, billing_month) VALUES ('$name','$acct','$addr','$pr','$cr','$tr','$amt','$due','$month')";
+  $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES (...)
   try { $conn->exec($ins); $success_msg = "Customer '$name' added!"; } catch (Exception $e) { $error_msg = "Add failed: " . $e->getMessage(); }
 }
 
@@ -84,7 +84,7 @@ if (isset($_POST['import_excel']) && isset($_FILES['excel_file']) && $_FILES['ex
       $due = $r[6] ?? date('Y-m-d');
       $month = $r[7] ?? date('F');
       if (empty($name) || empty($acct)) { $errors[] = "Row " . ($i + 1) . ": name and account are required"; continue; }
-      $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, PrReading, CReading, TReading, amount, due_date, billing_month) VALUES ('$name','$acct','$addr','$pr','$cr','$tr','$amt','$due','$month')";
+      $ins = "INSERT INTO customer (cust_name, cust_account, cust_address, prreading, creading, treading, amount, due_date, billing_month) VALUES (...)
       try { $conn->exec($ins); $imported++; } catch (Exception $e) { $errors[] = "Row " . ($i + 1) . ": " . $e->getMessage(); }
     }
     $success_msg = "$imported customer(s) imported successfully.";
@@ -188,9 +188,9 @@ $active_tab = $_GET['tab'] ?? 'list';
                     <td><?php echo $row['cust_id']; ?></td>
                     <td><?php echo htmlspecialchars($row['cust_name']); ?></td>
                     <td><?php echo htmlspecialchars($row['cust_account']); ?></td>
-                    <td><?php echo number_format($row['PrReading'], 2); ?></td>
-                    <td><?php echo number_format($row['CReading'], 2); ?></td>
-                    <td><?php echo number_format($row['TReading'], 2); ?></td>
+                    <td><?php echo number_format($row['prreading'] ?? 0, 2); ?></td>
+                    <td><?php echo number_format($row['creading'] ?? 0, 2); ?></td>
+                    <td><?php echo number_format($row['treading'] ?? 0, 2); ?></td>
                     <td>&#8369;<?php echo number_format($row['amount'], 2); ?></td>
                     <td><?php echo htmlspecialchars($row['billing_month']); ?></td>
                     <td><?php echo htmlspecialchars($row['due_date']); ?></td>
@@ -213,9 +213,9 @@ $active_tab = $_GET['tab'] ?? 'list';
                         data-id="<?php echo $row['cust_id']; ?>"
                         data-name="<?php echo htmlspecialchars($row['cust_name']); ?>"
                         data-account="<?php echo htmlspecialchars($row['cust_account']); ?>"
-                        data-pr="<?php echo $row['PrReading']; ?>"
-                        data-cr="<?php echo $row['CReading']; ?>"
-                        data-tr="<?php echo $row['TReading']; ?>"
+                        data-pr="<?php echo $row['prreading'] ?? 0; ?>"
+                        data-cr="<?php echo $row['creading'] ?? 0; ?>"
+                        data-tr="<?php echo $row['treading'] ?? 0; ?>"
                         data-amount="<?php echo $row['amount']; ?>"
                         data-due="<?php echo htmlspecialchars($row['due_date']); ?>"
                         data-month="<?php echo htmlspecialchars($row['billing_month']); ?>"
@@ -455,7 +455,7 @@ $active_tab = $_GET['tab'] ?? 'list';
             if (data.found) {
               $('#addCustName').val(data.cust_name).prop('readonly', true);
               $('#addCustAddress').val(data.cust_address).prop('readonly', true);
-              $('.add-pr').val(parseFloat(data.PrReading) || 0);
+              $('.add-pr').val(parseFloat(data.prreading) || 0);
             }
           });
         } else {
