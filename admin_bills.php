@@ -107,7 +107,8 @@ $active_tab = $_GET['tab'] ?? 'list';
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="css/primewater.css">
   <style>
-    .tab-pane { padding-top: 20px; }
+    .tab-pane { display: none; padding-top: 20px; }
+    .tab-pane.active { display: block; }
   </style>
 </head>
 <body>
