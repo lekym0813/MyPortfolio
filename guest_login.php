@@ -34,7 +34,7 @@
       </p>
 
       <div id="g_id_onload"
-        data-client_id="REPLACE_WITH_YOUR_REAL_CLIENT_ID"
+        data-client_id="19478160697-b7s161njn4n7lnfad4mrhdh6hpvfo27n.apps.googleusercontent.com"
         data-context="signin"
         data-ux_mode="popup"
         data-callback="handleGoogleCredential"
