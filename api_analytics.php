@@ -15,16 +15,30 @@ if (empty($user_id)) {
     exit;
 }
 
-$bills = [];
-$stmt = $conn->prepare("SELECT month, consumed, amount, duedate, status FROM bills WHERE user_id = ? ORDER BY reading_date ASC");
+$user = null;
+$stmt = $conn->prepare("SELECT accountnum FROM public.users WHERE id = ?");
 $stmt->execute([$user_id]);
+$row = $stmt->fetch();
+if ($row) {
+    $user = $row;
+}
+$stmt = null;
+
+if (!$user) {
+    echo json_encode(["success" => false, "message" => "User not found"]);
+    exit;
+}
+
+$bills = [];
+$stmt = $conn->prepare("SELECT billing_month, treading, amount, due_date, status FROM public.customer WHERE cust_account = ? ORDER BY due_date ASC");
+$stmt->execute([$user['accountnum']]);
 while ($row = $stmt->fetch()) {
     $bills[] = [
-        "month" => $row['month'],
-        "units" => (int)$row['consumed'],
+        "month" => $row['billing_month'],
+        "units" => (int)$row['treading'],
         "amount" => (double)$row['amount'],
-        "dueDate" => $row['duedate'],
-        "status" => $row['status']
+        "dueDate" => $row['due_date'],
+        "status" => trim($row['status'])
     ];
 }
 $stmt = null;
