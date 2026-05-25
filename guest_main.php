@@ -4,6 +4,16 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'guest') {
   header('Location: guest_login.php');
   exit();
 }
+
+$user_id = $_SESSION['guest_id'];
+$apps = [];
+try {
+  $stmt = $conn->prepare("SELECT id, fname, lname, conntype, date, status FROM public.application WHERE user_id = ? ORDER BY date DESC");
+  $stmt->execute([$user_id]);
+  $apps = $stmt->fetchAll();
+} catch (PDOException $e) {
+  // table may not exist yet
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +27,12 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'guest') {
   <link rel="stylesheet" href="css/primewater.css">
   <style>
     .guest-badge { background: #6c63ff; color: #fff; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+    .badge-status { display: inline-block; padding: 3px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .badge-pending { background: #fef3c7; color: #92400e; }
+    .badge-inspection { background: #dbeafe; color: #1e40af; }
+    .badge-payment { background: #e0e7ff; color: #3730a3; }
+    .badge-requirements { background: #fce4ec; color: #9b1c1c; }
+    .badge-installed { background: #d1fae5; color: #065f46; }
   </style>
 </head>
 <body>
@@ -88,6 +104,51 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'guest') {
       </div>
     </div>
   </div>
+
+  <?php if (count($apps) > 0): ?>
+  <div class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-clipboard-list"></i> My Applications</h2>
+        <p>Track the status of your submitted applications</p>
+      </div>
+      <div class="card-custom">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Connection Type</th>
+                  <th>Date Submitted</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($apps as $a): ?>
+                <?php
+                  $s = $a['status'] ?? 'Pending';
+                  $cls = 'badge-pending';
+                  if ($s == 'For Inspection') $cls = 'badge-inspection';
+                  elseif ($s == 'For Payment') $cls = 'badge-payment';
+                  elseif ($s == 'For additional Requirements') $cls = 'badge-requirements';
+                  elseif ($s == 'Installed') $cls = 'badge-installed';
+                ?>
+                <tr>
+                  <td><?php echo htmlspecialchars(($a['fname'] ?? '') . ' ' . ($a['lname'] ?? '')); ?></td>
+                  <td><?php echo htmlspecialchars($a['conntype'] ?? ''); ?></td>
+                  <td><?php echo htmlspecialchars($a['date'] ?? ''); ?></td>
+                  <td><span class="badge-status <?php echo $cls; ?>"><?php echo htmlspecialchars($s); ?></span></td>
+                </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
 
   <div class="announcement-section">
     <div class="container">
