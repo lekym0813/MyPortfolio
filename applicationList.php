@@ -141,11 +141,9 @@ if (!isset($_SESSION['user'])) {
                   <td><?php echo htmlspecialchars($rows['fname'] ?? ''); ?></td>
                   <td><?php echo htmlspecialchars($rows['lname'] ?? ''); ?></td>
                   <td><?php echo htmlspecialchars($rows['date'] ?? ''); ?></td>
-                  <td><?php echo htmlspecialchars($rows['conntype'] ?? ''); ?></td>
-                  <td><?php echo htmlspecialchars($s ?? ''); ?></td>
                   <td>
                     <?php
-                    $s = $rows['status'] ?: 'Pending';
+                    $s = $rows['status'] ?? 'Pending';
                     $cls = 'badge-pending';
                     if ($s == 'For Inspection') $cls = 'badge-inspection';
                     elseif ($s == 'For Payment') $cls = 'badge-payment';
@@ -154,7 +152,7 @@ if (!isset($_SESSION['user'])) {
                     echo '<span class="badge-pw ' . $cls . '">' . htmlspecialchars($s) . '</span>';
                     ?>
                   </td>
-                  <td><?php echo htmlspecialchars($rows['conntype']); ?></td>
+                  <td><?php echo htmlspecialchars($rows['conntype'] ?? ''); ?></td>
                   <td>
                     <a href="applicationDetails.php?id=<?php echo $rows['id']; ?>" class="btn-pw btn-pw-primary btn-pw-sm"><i class="fas fa-eye"></i></a>
                     <a href="application-update.php?id=<?php echo $rows['id']; ?>" class="btn-pw btn-pw-orange btn-pw-sm"><i class="fas fa-edit"></i></a>
