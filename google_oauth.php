@@ -38,13 +38,12 @@ if (!$payload || !isset($payload['sub'], $payload['email'])) {
     exit;
 }
 
-// Optional: verify the audience (client ID) matches yours for extra security
-// $expected_client_id = 'REPLACE_WITH_YOUR_REAL_CLIENT_ID';
-// if ($payload['aud'] !== $expected_client_id) {
-//     http_response_code(401);
-//     echo json_encode(['success' => false, 'error' => 'Token audience mismatch']);
-//     exit;
-// }
+$expected_client_id = '19478160697-b7s161njn4n7lnfad4mrhdh6hpvfo27n.apps.googleusercontent.com';
+if ($payload['aud'] !== $expected_client_id) {
+    http_response_code(401);
+    echo json_encode(['success' => false, 'error' => 'Token audience mismatch']);
+    exit;
+}
 
 $google_id = $payload['sub'];
 $email = $payload['email'];
