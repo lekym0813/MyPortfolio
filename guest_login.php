@@ -90,9 +90,11 @@
             alert('Login failed: ' + (res.error || 'Unknown error'));
           }
         },
-        error: function() {
+        error: function(jqXHR) {
           $('#loadingOverlay').hide();
-          alert('Server error. Please try again.');
+          var msg = 'Server error.';
+          try { var r = JSON.parse(jqXHR.responseText); msg = r.error || msg; } catch(e) {}
+          alert(msg + ' Please try again.');
         }
       });
     }
