@@ -1,0 +1,14 @@
+RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} !^/?(\.well-known)/  [NC]
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+# Block directory listing
+Options -Indexes
+
+# Block access to sensitive files
+<FilesMatch "\.(sql|md|log|env)$">
+    Require all denied
+</FilesMatch>
