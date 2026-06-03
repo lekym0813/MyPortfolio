@@ -1,1 +1,4 @@
 db_local.php
+.env
+.env.local
+.env.*.local
