@@ -188,12 +188,12 @@ $active_tab = $_GET['tab'] ?? 'list';
                     <td><?php echo $row['cust_id']; ?></td>
                     <td><?php echo htmlspecialchars($row['cust_name']); ?></td>
                     <td><?php echo htmlspecialchars($row['cust_account']); ?></td>
-                    <td><?php echo number_format($row['PrReading'], 2); ?></td>
-                    <td><?php echo number_format($row['CReading'], 2); ?></td>
-                    <td><?php echo number_format($row['TReading'], 2); ?></td>
-                    <td>&#8369;<?php echo number_format($row['amount'], 2); ?></td>
-                    <td><?php echo htmlspecialchars($row['billing_month']); ?></td>
-                    <td><?php echo htmlspecialchars($row['due_date']); ?></td>
+                    <td><?php echo number_format((float)($row['PrReading'] ?? 0), 2); ?></td>
+                    <td><?php echo number_format((float)($row['CReading'] ?? 0), 2); ?></td>
+                    <td><?php echo number_format((float)($row['TReading'] ?? 0), 2); ?></td>
+                    <td>&#8369;<?php echo number_format((float)($row['amount'] ?? 0), 2); ?></td>
+                    <td><?php echo htmlspecialchars($row['billing_month'] ?? ''); ?></td>
+                    <td><?php echo htmlspecialchars($row['due_date'] ?? ''); ?></td>
                     <td>
                       <?php $status = $row['status'] ?? 'Unpaid'; ?>
                       <span class="badge-pw <?php echo $status === 'Paid' ? 'badge-accomplished' : 'badge-pending'; ?>">
@@ -213,13 +213,13 @@ $active_tab = $_GET['tab'] ?? 'list';
                         data-id="<?php echo $row['cust_id']; ?>"
                         data-name="<?php echo htmlspecialchars($row['cust_name']); ?>"
                         data-account="<?php echo htmlspecialchars($row['cust_account']); ?>"
-                        data-pr="<?php echo $row['PrReading']; ?>"
-                        data-cr="<?php echo $row['CReading']; ?>"
-                        data-tr="<?php echo $row['TReading']; ?>"
-                        data-amount="<?php echo $row['amount']; ?>"
-                        data-due="<?php echo htmlspecialchars($row['due_date']); ?>"
-                        data-month="<?php echo htmlspecialchars($row['billing_month']); ?>"
-                        data-address="<?php echo htmlspecialchars($row['cust_address']); ?>">
+                        data-pr="<?php echo $row['PrReading'] ?? 0; ?>"
+                        data-cr="<?php echo $row['CReading'] ?? 0; ?>"
+                        data-tr="<?php echo $row['TReading'] ?? 0; ?>"
+                        data-amount="<?php echo $row['amount'] ?? 0; ?>"
+                        data-due="<?php echo htmlspecialchars($row['due_date'] ?? ''); ?>"
+                        data-month="<?php echo htmlspecialchars($row['billing_month'] ?? ''); ?>"
+                        data-address="<?php echo htmlspecialchars($row['cust_address'] ?? ''); ?>">
                         <i class="fas fa-edit"></i> Edit
                       </button>
                     </td>
