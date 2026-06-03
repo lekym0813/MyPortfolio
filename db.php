@@ -11,13 +11,15 @@ if (file_exists(__DIR__ . '/.env')) {
 }
 
 $host = getenv("DB_HOST") ?: "localhost";
+// Force IPv4 by resolving hostname
+$host = gethostbyname($host);
 $port = getenv("DB_PORT") ?: "5432";
 $dbname = getenv("DB_NAME") ?: "postgres";
 $username = getenv("DB_USER") ?: "postgres";
 $password = getenv("DB_PASSWORD") ?: "";
 
 try {
-    $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $username, $password);
+    $conn = new PDO("pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
