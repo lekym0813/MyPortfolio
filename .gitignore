@@ -5,3 +5,9 @@ db_local.php
 node_modules/
 .DS_Store
 *.log
+vendor/
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
